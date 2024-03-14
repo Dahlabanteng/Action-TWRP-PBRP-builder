@@ -149,7 +149,7 @@ jobs:
         cd ${{ steps.pwd.outputs.workspace-folder }}/fox_${{ github.event.inputs.MANIFEST_BRANCH }}
         sed -i '/remove-project name="platform\/external\/gflags"/d' .repo/manifests/remove-minimal.xml
         git clone https://android.googlesource.com/platform/external/gflags/ external/gflags
-        cd ..
+        cd ${{ steps.pwd.outputs.workspace-folder }}
         source build/envsetup.sh
         export ALLOW_MISSING_DEPENDENCIES=true
         lunch ${{ github.event.inputs.MAKEFILE_NAME }}-eng && make clean && make ${{ github.event.inputs.BUILD_TARGET }}image -j$(nproc --all)
